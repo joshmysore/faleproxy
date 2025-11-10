@@ -53,14 +53,25 @@ app.post('/fetch', async (req, res) => {
     }).each(function() {
       // Replace text content but not in URLs or attributes
       const text = $(this).text();
-      const newText = text.replace(/Yale/g, 'Fale').replace(/yale/g, 'fale').replace(/YALE/g, 'FALE');
+      // Use case-insensitive regex with a replacer function to preserve case pattern
+      const newText = text.replace(/Yale/gi, function(match) {
+        if (match === 'YALE') return 'FALE';
+        if (match === 'yale') return 'fale';
+        if (match === 'Yale') return 'Fale';
+        return 'Fale'; // default
+      });
       if (text !== newText) {
         $(this).replaceWith(newText);
       }
     });
     
     // Process title separately
-    const title = $('title').text().replace(/Yale/g, 'Fale').replace(/yale/g, 'fale').replace(/YALE/g, 'FALE');
+    const title = $('title').text().replace(/Yale/gi, function(match) {
+      if (match === 'YALE') return 'FALE';
+      if (match === 'yale') return 'fale';
+      if (match === 'Yale') return 'Fale';
+      return 'Fale'; // default
+    });
     $('title').text(title);
     
     return res.json({ 
