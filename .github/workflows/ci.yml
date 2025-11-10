@@ -44,6 +44,7 @@ jobs:
     needs: test
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    environment: Vercel
     
     steps:
     - uses: actions/checkout@v4
@@ -70,6 +71,7 @@ jobs:
     needs: test
     if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/main' && github.ref != 'refs/heads/master')
     runs-on: ubuntu-latest
+    environment: Vercel
     
     steps:
     - uses: actions/checkout@v4
