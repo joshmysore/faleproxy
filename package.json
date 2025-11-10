@@ -32,10 +32,10 @@
       "/tests/integration.test.js"
     ],
     "collectCoverageFrom": [
-      "**/*.js",
+      "tests/**/*.js",
+      "!tests/integration.test.js",
       "!**/node_modules/**",
-      "!**/coverage/**",
-      "!jest.config.js"
+      "!**/coverage/**"
     ],
     "coverageThreshold": {
       "global": {
