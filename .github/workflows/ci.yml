@@ -6,7 +6,7 @@ env:
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ '**' ]  # Trigger on all branches
   pull_request:
     branches: [ main, master ]
 
